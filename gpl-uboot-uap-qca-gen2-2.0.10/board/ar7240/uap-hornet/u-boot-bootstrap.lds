@@ -1,0 +1,1 @@
+../ap121/u-boot-bootstrap.lds

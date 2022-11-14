@@ -1,0 +1,39 @@
+#ifndef UBNTHAL_NAME_UBOOT_ENV
+#define UBNTHAL_NAME_UBOOT_ENV "u-boot-env"
+#endif
+#ifndef UBNTHAL_NAME_BOOTSELECT
+#define UBNTHAL_NAME_BOOTSELECT "bs"
+#endif
+#ifndef UBNTHAL_NAME_CFG
+#define UBNTHAL_NAME_CFG "cfg"
+#endif
+
+/ {
+	ubnthal {
+		write-protect {
+			compatible = "ubnthal,write-protect";
+			/*
+			* Set default write protect policy by setting "default-write-policy"
+			* to rw/ro. That make all block devices of type EXT4 and MTD device
+			* of type NOR read-only/read-write by default.
+			*/
+			default-write-policy = "ro";
+			explicit-write-policy {
+				mtd {
+					partition@0 {
+						label = UBNTHAL_NAME_UBOOT_ENV;
+						write-policy = "rw";
+					};
+					partition@1 {
+						label = UBNTHAL_NAME_BOOTSELECT;
+						write-policy = "rw";
+					};
+					partition@2 {
+						label = UBNTHAL_NAME_CFG;
+						write-policy = "rw";
+					};
+				};
+			};
+		};
+	};
+};

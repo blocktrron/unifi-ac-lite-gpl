@@ -1,0 +1,1 @@
+../db12x/u-boot.lds

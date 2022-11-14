@@ -1,0 +1,24 @@
+
+SDK=$1
+
+if [ ! -d "$1" ] ; then
+	echo ""
+	echo "[ERROR] ${SDK} doesn't exist!!"
+	echo ""
+	echo "git clone http://10.1.0.9/unifi/git/LSDK.git"
+	echo "cd LSDK/build"
+	echo "BOARD_TYPE=<type> make     # type: ap99-2.6.31 | ap121-2.6.31 | db12x"
+	echo ""
+	exit
+fi
+
+TFTP="/tftpboot"
+if [ ! -d "${TFTP}" ] ; then
+	echo ""
+	echo "[ERROR] ${TFTP} doesn't exist"
+	echo ""
+	echo "sudo apt-get install tftpd-hpa"
+	echo "sudo chmod -R 777 ${TFTP}"
+	echo ""
+	exit
+fi
